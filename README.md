@@ -4,43 +4,72 @@
 
 FinGuard is a financial resilience platform designed to help individuals understand their financial position, identify potential financial pressure, and make better-informed financial decisions.
 
-Rather than functioning as a traditional budgeting application, FinGuard focuses on helping users understand their financial health, monitor debt obligations, assess their cashflow position, anticipate potential shortfalls, and explore practical ways to improve their financial resilience.
+Rather than functioning as a traditional budgeting application, FinGuard focuses on helping users understand their debt obligations, assess their cashflow position, anticipate potential shortfalls, and take informed action before financial pressure escalates.
 
-The platform is being developed with an initial focus on debt burden and limited cashflow buffers, particularly within the Nigerian financial context.
+Built with the Nigerian financial context in mind, FinGuard aims to make financial insights more accessible, practical, and useful.
 
-**Status:** MVP in Development
+**Project Status:** MVP in Development
+
+---
+
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Core Features](#core-features)
+- [Technology Stack](#technology-stack)
+- [Project Structure](#project-structure)
+- [System Architecture](#system-architecture)
+- [Getting Started](#getting-started)
+- [Development Workflow](#development-workflow)
+- [Collaboration Guidelines](#collaboration-guidelines)
+- [Security and Privacy](#security-and-privacy)
+- [Documentation and Resources](#documentation-and-resources)
+- [Development Priorities](#development-priorities)
 
 ---
 
 ## Project Overview
 
-FinGuard aims to help users answer important financial questions:
+FinGuard is being developed to help users answer important financial questions:
 
-- How much of my income goes towards debt repayment?
-- Can my current income comfortably cover my recurring expenses and obligations?
-- How much financial buffer do I have?
+- How much of my income is already committed to debt repayments?
+- Are my recurring expenses putting pressure on my available income?
+- Do I have enough financial buffer to handle upcoming obligations?
 - Am I likely to experience a cashflow shortfall?
-- What factors are contributing to my current financial position?
-- What practical actions can I take to improve my financial resilience?
+- What financial decisions could help improve my current position?
+- How might taking on another loan affect my financial situation?
 
-The platform uses financial data, deterministic calculations, risk assessment, and decision-support capabilities to provide users with a clearer understanding of their financial situation.
+The goal is not simply to track how users spend money. It is to help them understand their financial capacity, recognize potential risks, and make better-informed decisions.
+
+### Target Market
+
+Nigeria.
+
+### MVP Focus
+
+The initial development focuses on two major areas:
+
+1. **Debt Burden:** Understanding how existing debt obligations affect a user's financial position.
+2. **Thin Cashflow Buffer:** Identifying situations where a user's available income may not be sufficient to comfortably cover recurring expenses and upcoming obligations.
+
+---
 
 ## Core Features
 
-The platform is being developed around the following capabilities:
+The following capabilities form the planned FinGuard product. They are being developed incrementally as part of the MVP.
 
-- **User Authentication:** Secure user registration, login, and account management.
-- **Financial Assessment:** Collect and assess relevant financial information.
-- **Debt Management:** Track outstanding debts, repayment amounts, and obligations.
-- **Cashflow Monitoring:** Understand income, recurring expenses, and available financial buffers.
-- **Financial Analysis:** Calculate relevant financial metrics and assess financial pressure.
-- **Shortfall Forecasting:** Identify potential future cashflow challenges.
-- **Risk Explanation:** Help users understand the factors affecting their financial position.
-- **Decision Support:** Provide practical recommendations based on financial assessments.
-- **Loan Impact Simulation:** Explore how potential borrowing could affect financial capacity.
-- **Intervention Tracking:** Monitor actions taken to improve financial resilience.
-
-Features will be introduced incrementally as development progresses.
+| Feature | Description |
+|---|---|
+| User Authentication | Secure account creation, login, and account management. |
+| Financial Assessment | Collecting relevant financial information to understand a user's financial position. |
+| Debt Management | Recording and monitoring existing debt obligations. |
+| Cashflow Monitoring | Understanding income, recurring expenses, and available financial buffer. |
+| Financial Analysis | Evaluating a user's financial position using relevant financial indicators. |
+| Shortfall Forecasting | Identifying potential future cashflow gaps. |
+| Risk Explanation | Explaining financial pressure and the factors contributing to it. |
+| Decision Support | Providing practical, context-aware financial insights and recommendations. |
+| Loan Impact Simulation | Exploring how a potential loan could affect a user's financial position. |
+| Intervention Tracking | Monitoring actions taken by users to improve their financial situation. |
 
 ---
 
@@ -48,35 +77,32 @@ Features will be introduced incrementally as development progresses.
 
 ### Backend
 
-| Technology | Purpose |
-|---|---|
-| Node.js | JavaScript runtime |
-| Express.js | REST API framework |
-| MongoDB | Database |
-| Mongoose | MongoDB object modelling |
-| JWT | Authentication |
-| Joi | Request validation |
-| OpenAI API | AI integration |
-| Cloudinary | File and media storage |
-| Nodemailer | Email delivery |
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JSON Web Tokens (JWT)
+- Joi
+- OpenAI API integration
+- Cloudinary
+- Brevo (Transactional Email)
 
 ### Frontend
 
-| Technology | Purpose |
-|---|---|
-| React | User interface development |
-| JavaScript | Application logic |
+- React
+- JavaScript
+- CSS
 
-Additional frontend tools and libraries will be documented as the frontend is developed.
+The frontend is being developed separately from the backend within the same repository.
 
 ---
 
 ## Project Structure
 
-FinGuard uses a monorepo structure, meaning the frontend and backend applications are maintained within one Git repository.
+FinGuard uses a monorepo structure to keep the frontend and backend in one repository while allowing both teams to work independently.
 
 ```text
-finguard/
+FinGuard/
 │
 ├── backend/
 │   ├── src/
@@ -86,16 +112,16 @@ finguard/
 │   │   ├── models/
 │   │   ├── routes/
 │   │   ├── schemas/
-│   │   ├── services/
-│   │   └── app.js
+│   │   └── services/
 │   │
 │   ├── .env.example
 │   ├── package.json
 │   ├── package-lock.json
-│   └── server.js
+│   ├── server.js
+│   └── README.md
 │
 ├── frontend/
-│   └── React application
+│   └── README.md
 │
 ├── .github/
 │   └── CODEOWNERS
@@ -104,11 +130,18 @@ finguard/
 └── README.md
 ```
 
-### Backend
+### Directory Responsibilities
 
-The backend is responsible for application logic, authentication, financial calculations, database operations, and communication with external services.
+- `backend/`: Backend application, API endpoints, database operations, business logic, and integrations.
+- `frontend/`: React application and user interface.
+- `.github/`: GitHub collaboration and repository configuration.
+- `README.md`: Main project documentation.
 
-It follows a layered architecture:
+---
+
+## System Architecture
+
+The backend follows a layered architecture that separates responsibilities and makes the application easier to maintain.
 
 ```text
 Client
@@ -132,21 +165,18 @@ Models
 MongoDB
 ```
 
-- **Routes:** Define API endpoints.
-- **Middlewares:** Handle authentication, validation, logging, and request processing.
-- **Controllers:** Handle incoming requests and outgoing responses.
-- **Services:** Contain reusable business logic.
-- **Models:** Define database structures and interact with MongoDB.
-- **Configuration:** Manages database connections and external integrations.
-- **Schemas:** Define validation rules for incoming data.
+### Layer Responsibilities
 
-### Frontend
+| Layer | Responsibility |
+|---|---|
+| Routes | Defines API endpoints and connects them to controllers. |
+| Middlewares | Handles shared request processing, authentication, and validation where applicable. |
+| Controllers | Handles incoming requests and outgoing responses. |
+| Services | Contains reusable business logic and external service integrations. |
+| Models | Defines database schemas and data structures. |
+| MongoDB | Stores application data. |
 
-The frontend will be developed from scratch using React.
-
-It will provide the user-facing experience for onboarding, financial assessment, dashboard interactions, and other platform features.
-
-Frontend development is currently being set up.
+The frontend communicates with the backend through HTTP requests to the REST API.
 
 ---
 
@@ -154,13 +184,13 @@ Frontend development is currently being set up.
 
 ### Prerequisites
 
-Before working on the project, ensure you have:
+Before setting up the project, ensure you have:
 
-- Node.js installed.
-- npm installed.
-- Git installed.
-- A MongoDB database.
-- Access to the FinGuard repository.
+- [Node.js](https://nodejs.org/)
+- npm
+- [Git](https://git-scm.com/)
+- Access to the FinGuard repository
+- A MongoDB database connection
 
 ### 1. Clone the Repository
 
@@ -168,221 +198,206 @@ Before working on the project, ensure you have:
 git clone https://github.com/AhamefulaChibundu/FinGuard.git
 ```
 
-Navigate into the project:
+### 2. Navigate into the Project
 
 ```bash
 cd FinGuard
 ```
 
-### 2. Set Up the Backend
-
-Navigate into the backend directory:
+### 3. Set Up the Backend
 
 ```bash
 cd backend
-```
-
-Install dependencies:
-
-```bash
 npm install
 ```
 
-### 3. Configure Environment Variables
+### 4. Configure Environment Variables
 
-Create a local environment file using the provided example:
+Create your local environment file:
 
 ```bash
 cp .env.example .env
 ```
 
-Update the `.env` file with your local configuration.
+Open `.env` and provide the required credentials.
 
-The backend currently expects the following environment variables:
+The backend environment configuration includes:
 
-```env
-PORT=3050
+| Variable | Purpose |
+|---|---|
+| `PORT` | Port on which the backend server runs. |
+| `MONGODB_URI` | MongoDB connection string. |
+| `JWT_SECRET` | Secret used for signing authentication tokens. |
+| `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name. |
+| `CLOUDINARY_API_KEY` | Cloudinary API key. |
+| `CLOUDINARY_API_SECRET` | Cloudinary API secret. |
+| `OPENAI_API_KEY` | OpenAI API key. |
+| `BREVO_API_KEY` | Brevo API key for transactional email. |
+| `BREVO_SENDER_EMAIL` | Verified sender email configured in Brevo. |
+| `BREVO_SENDER_NAME` | Sender name displayed in outgoing emails. |
 
-MONGODB_URI=your_mongodb_connection_string
+Never commit your `.env` file or expose API keys and credentials.
 
-JWT_SECRET=your_long_random_secret
+### 5. Start the Backend
 
-CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-CLOUDINARY_API_KEY=your_cloudinary_api_key
-CLOUDINARY_API_SECRET=your_cloudinary_api_secret
-
-OPENAI_API_KEY=your_openai_api_key
-
-
-```
-
-Only configure external service credentials when they are required by the feature you are working on.
-
-**Important:** Never commit your `.env` file or expose credentials in source code.
-
-### 4. Start the Backend
-
-Development:
+For development:
 
 ```bash
 npm run dev
 ```
 
-Production:
+For production:
 
 ```bash
 npm start
 ```
 
-The backend currently uses port `3050` by default through its environment configuration.
+The backend currently uses port `3050` by default.
 
-The server establishes its MongoDB connection before starting the Express application.
+### 6. Set Up the Frontend
 
-### 5. Set Up the Frontend
-
-Frontend setup instructions will be added once the React application has been initialized.
+Frontend setup is currently in progress. Refer to the [Frontend README](frontend/README.md) for updates.
 
 ---
 
 ## Development Workflow
 
-FinGuard is developed collaboratively by backend and frontend engineers.
-
-The team uses Git branches and Pull Requests to organize development and integrate changes.
+The project uses Git branches to support parallel development and controlled integration.
 
 ### Branch Structure
 
-```text
-main
-  |
-  └── develop
-        |
-        ├── feature/backend-...
-        ├── feature/frontend-...
-        └── fix/...
-```
-
 | Branch | Purpose |
 |---|---|
-| `main` | Stable application version |
-| `develop` | Shared integration branch |
-| `feature/*` | New feature development |
-| `fix/*` | Branches for fixing independent bugs that are not part of an ongoing feature. |
+| `main` | Stable version of the application. |
+| `develop` | Shared integration branch for ongoing development. |
+| `feature/*` | New features and functionality. |
+| `fix/*` | Independent bug fixes. |
+| `hotfix/*` | Urgent fixes for production issues, when necessary. |
 
-### Contribution Process
+### Branching Guidelines
 
-1. Make sure your local repository is up to date.
-2. Switch to the `develop` branch.
-3. Create a branch for your assigned task.
-4. Implement the feature or fix.
-5. Test your changes locally.
-6. Commit and push your changes.
-7. Open a Pull Request targeting `develop`.
-8. Request the appropriate review.
-9. Address review comments.
-10. Merge after approval.
+- All new features should be developed on their own feature branches.
+- Feature branches should be created from the latest `develop` branch.
+- Bug fixes directly related to an ongoing feature should be handled on that feature branch.
+- Independent bug fixes can use separate `fix/*` branches.
+- Feature branches should be merged into `develop` through pull requests.
+- Only tested and reviewed changes should move from `develop` to `main`.
 
-Example:
+### Creating a Feature Branch
 
 ```bash
 git switch develop
-
 git pull origin develop
-
-git switch -c feature/backend-onboarding
+git switch -c feature/your-feature-name
 ```
+
+### Pushing Your Changes
+
+```bash
+git add .
+git commit -m "feat: describe your changes"
+git push -u origin feature/your-feature-name
+```
+
+Create a pull request targeting `develop`.
+
+---
+
+## Commit Message Convention
 
 Use clear and descriptive commit messages.
 
-Suggested commit prefixes:
+| Prefix | Usage |
+|---|---|
+| `feat:` | New functionality |
+| `fix:` | Bug fixes |
+| `refactor:` | Code restructuring without changing functionality |
+| `test:` | Adding or updating tests |
+| `docs:` | Documentation changes |
+| `chore:` | Maintenance and configuration changes |
 
-- `feat:` New functionality.
-- `fix:` Bug fixes.
-- `refactor:` Code restructuring without changing behaviour.
-- `test:` Test-related changes.
-- `docs:` Documentation updates.
-- `chore:` Maintenance and configuration changes.
+Examples:
 
-### Collaboration Guidelines
-
-**Communicate before making significant changes to another developer's implementation.**
-
-Before modifying existing functionality:
-
-- Understand the existing implementation.
-- Discuss significant changes with the responsible developer.
-- Consider how the changes affect other parts of the application.
-- Avoid duplicated work.
-
-**Test before opening Pull Requests.**
-
-Verify that:
-
-- The application starts successfully.
-- The affected functionality works as expected.
-- Related functionality has not been broken.
-- Authentication and authorization work where applicable.
-- Validation and error handling behave correctly.
-
-**Keep your branches synchronized.**
-
-Regularly pull the latest changes from `develop` and resolve conflicts before submitting your work for review.
+```bash
+git commit -m "feat: implement financial profile onboarding"
+git commit -m "fix: correct debt calculation"
+git commit -m "docs: update backend documentation"
+git commit -m "test: add authentication tests"
+```
 
 ---
 
-## Security and Data Privacy
+## Collaboration Guidelines
 
-FinGuard handles sensitive financial information. Protecting user data is an important part of the platform's development.
+To maintain consistency across the project:
 
-The product is designed around the following principles:
+- Work only on your assigned feature or task.
+- Keep feature branches focused on specific changes.
+- Pull the latest changes from `develop` before starting new work.
+- Avoid modifying another developer's work without communication.
+- Test changes before creating a pull request.
+- Use meaningful commit messages.
+- Request code reviews before merging.
+- Keep documentation updated when introducing significant changes.
+
+---
+
+## Security and Privacy
+
+FinGuard handles personal financial information, so security and privacy are important parts of the development process.
+
+The project follows these principles:
 
 - Obtain explicit user consent before collecting financial information.
-- Collect only the information required for the platform's functionality.
-- Do not request users' BVN or full banking credentials.
-- Protect authentication credentials and sensitive information.
-- Allow users to request deletion of their financial data.
-- Do not sell or share users' financial data with lenders or advertisers.
-- Ensure financial recommendations are transparent and appropriately explained.
+- Collect only the information required to provide the platform's functionality.
+- Do not request BVN details or full banking credentials.
+- Protect sensitive information through appropriate security practices.
+- Allow users to request deletion of their personal data.
+- Use financial information only for the platform's stated purposes.
+- Do not sell or share users' financial information with lenders or advertisers.
+- Make financial insights and recommendations understandable to users.
 
-Security and privacy requirements will be incorporated throughout development.
-
----
-
-## API Documentation
-
-Backend API documentation and endpoint references will be maintained as the API evolves.
-
-API testing and documentation will be managed using Postman.
+Financial recommendations and simulations must be developed with appropriate safeguards and reviewed for applicable regulatory requirements.
 
 ---
 
-## Development Status
+## Documentation and Resources
 
-FinGuard is currently in active MVP development.
+| Resource | Link |
+|---|---|
+| GitHub Repository | [FinGuard](https://github.com/AhamefulaChibundu/FinGuard) |
+| Backend Documentation | [Backend README](backend/README.md) |
+| Frontend Documentation | [Frontend README](frontend/README.md) |
+| API Documentation | To be added |
+| Live Application | To be added |
+| Design Files | To be added |
 
-The team is taking an incremental approach, beginning with the onboarding experience and progressively implementing the platform's core capabilities.
+---
 
-Initial development priorities include:
+## Development Priorities
 
-- Project architecture and repository setup.
-- User onboarding.
-- Consent and financial data collection.
-- Financial assessment.
-- Debt and cashflow analysis.
-- Financial resilience monitoring.
+The initial development priorities are:
 
-Additional capabilities will be introduced as the MVP progresses.
+1. User onboarding and authentication.
+2. Consent and financial data collection.
+3. Financial profile management.
+4. Financial assessment.
+5. Debt and cashflow analysis.
+6. Financial pressure monitoring.
+7. Shortfall forecasting and decision support.
+
+These priorities will guide the incremental development of the MVP.
 
 ---
 
 ## Contributing
 
-Contributions are managed through the team's GitHub repository.
+Contributions are welcome from assigned project collaborators.
 
-Developers should work on assigned feature branches and submit Pull Requests for review before changes are integrated into the shared development branch.
+Please follow the development workflow, commit conventions, and collaboration guidelines before submitting changes.
 
-Please follow the established coding conventions, communicate significant changes, and test your work before submitting Pull Requests.
+For significant changes, discuss the proposed implementation with the team before proceeding.
 
 ---
 
-**FinGuard — Helping people understand their financial position, anticipate financial pressure, and build financial resilience.**
+**FinGuard - Understand your financial position. Anticipate pressure. Make informed decisions.**
